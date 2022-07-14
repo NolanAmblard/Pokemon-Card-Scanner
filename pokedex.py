@@ -157,7 +157,8 @@ class Pokedex:
                         "Mega Charizard",
                         "Mega Blastoise",
                         "Mega Pidgeot",
-                        "Mega Slowbro")
+                        "Mega Slowbro",
+                        "NA")
 
         # Stores the Pokedex number of all Kanto Pokemon
         # If a Pokemon has a mega evolution in the Evolutions set, there is a second entry dedicated to the mega
@@ -317,7 +318,8 @@ class Pokedex:
                           -6,
                           -9,
                           -18,
-                          -80)
+                          -80,
+                          0)
 
         # Stage of Pokemon: Unevolved = basic; stage 1 = evolved once, stage 2 = evolved twice, Mega = mega evolution
         # Note: EX Cards are basic even if the Pokemon is an evolved Pokemon, this will be accounted for later
@@ -476,7 +478,8 @@ class Pokedex:
                         "Mega",
                         "Mega",
                         "Mega",
-                        "Mega")
+                        "Mega",
+                        "NA")
 
         # Type of first 151 Pokemon according to the card game
         self.type = ("Grass",
@@ -625,11 +628,17 @@ class Pokedex:
                      "Water",
                      "Lightning",
                      "Fire",
-                     "Colorless",  # Based on generation 1 sets
+                     "Colorless",  # 147 Dratini - Colorless Based on generation 1 sets
                      "Colorless",
                      "Colorless",
                      "Psychic",
-                     "Psychic")
+                     "Psychic",
+                     "Grass",
+                     "Fire",
+                     "Water",
+                     "Colorless",
+                     "Water",
+                     "NA")
 
         # Height of Pokemon in meters
         self.height = (0.7, # 001 Bulbasaur
@@ -783,8 +792,12 @@ class Pokedex:
                        2.2,
                        2.0,
                        0.4, # 151 Mew
-                       2.4,
+                       2.4, # -003 Mega Venusaur
                        1.7,
                        1.6,
                        2.2,
-                       2.0)
+                       2.0,
+                       0.0 # Represents NA
+                       )
+
+        self.numpoke = len(self.pokemon)

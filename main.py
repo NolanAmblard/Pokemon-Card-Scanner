@@ -75,7 +75,7 @@ def readCard():
 
 
 if __name__ == '__main__':
-    # isFirst = True
-    # if isFirst:
-    #     cardData.createDatabase(isFirst)
-    readCard()
+    isFirst = True # True if this is your first time running this code; will create a new database
+    if isFirst:
+        cardData.createDatabase()
+    #readCard()

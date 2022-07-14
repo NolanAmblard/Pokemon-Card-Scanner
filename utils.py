@@ -9,15 +9,16 @@ import imagehash
 def biggestContour(contours):
     biggest = np.array([])
     maxArea = 0
-    for i in contours: # Loop through contours
-        area = cv2.contourArea(i) # Get area of contour
+    for i in contours:  # Loop through contours
+        area = cv2.contourArea(i)  # Get area of contour
         if area > 5000:
-            peri = cv2.arcLength(i, True) # Get perimeter of contour
-            approx = cv2.approxPolyDP(i, 0.02 * peri, True) # Gets number of sides of contour
-            if area > maxArea and len(approx) == 4: # If area of contour is bigger than current max & contour is a rectangle
+            peri = cv2.arcLength(i, True)  # Get perimeter of contour
+            approx = cv2.approxPolyDP(i, 0.02 * peri, True)  # Gets number of sides of contour
+            if area > maxArea and len(approx) == 4:  # If area of contour is > than current max & contour is a rectangle
                 biggest = approx
                 maxArea = area
     return biggest, maxArea
+
 
 # Returns corners in order [topleft, topright, bottomleft, bottomright]
 # This is meant to return a vertical image no matter the card orientation, but the result may be upside-down or mirrored
@@ -84,7 +85,9 @@ def reorderCorners(corners):
 
     return [[topleft], [topright], [bottomleft], [bottomright]]
 
+
 # Returns sorted array and array of indexes of locations of original values
+# Selection sort is used as efficieny won't matter as much for n = 3 or 4
 def sortVals(vals):
     indexes = list(range(len(vals)))
     for i in range(len(vals)):
@@ -94,20 +97,27 @@ def sortVals(vals):
             if vals[j] < minval:
                 minval = vals[j]
                 index = j
-        temp = vals[i]
-        vals[i] = minval
-        vals[index] = temp
-        tempIX = indexes[i]
-        indexes[i] = indexes[index]
-        indexes[index] = tempIX
+        swap(vals, i, index)
+        swap(indexes, i, index)
     return vals, indexes
 
+
+# Swaps the values of at two indexes in the given array
+def swap(arr, ind1, ind2):
+    temp = arr[ind1]
+    arr[ind1] = arr[ind2]
+    arr[ind2] = temp
+
+
+# Compares the average hash of the current frame with the average has of every card in evolutions
 def compareCards(imgWarpColor):
+    # Converts image format from OpenCV format to PIL format
+    # Converts from Blue Green Red to Red Green Blue image format
     convertedImgWarpColor = cv2.cvtColor(imgWarpColor, cv2.COLOR_BGR2RGB)
 
     hash0 = imagehash.average_hash(Image.fromarray(convertedImgWarpColor))
     hash1 = imagehash.average_hash(Image.open('evolutionsCardsImages/020.png'))
-    cutoff = 10 # Can change, just a placeholder
+    cutoff = 10  # Can change, just a placeholder
 
     hashDiff = hash0 - hash1
     print(hashDiff)
