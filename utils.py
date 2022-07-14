@@ -3,7 +3,6 @@ import numpy as np
 import math
 from PIL import Image
 import imagehash
-import os
 
 
 # Returns the corners & area of the biggest contour
@@ -107,22 +106,10 @@ def compareCards(imgWarpColor):
     convertedImgWarpColor = cv2.cvtColor(imgWarpColor, cv2.COLOR_BGR2RGB)
 
     hash0 = imagehash.average_hash(Image.fromarray(convertedImgWarpColor))
-    hash1 = imagehash.average_hash(Image.open('magmar.jpg'))
+    hash1 = imagehash.average_hash(Image.open('evolutionsCardsImages/020.png'))
     cutoff = 10 # Can change, just a placeholder
 
     hashDiff = hash0 - hash1
     print(hashDiff)
     if hashDiff < cutoff:
         print('These images are similar!')
-
-    location = '/Users/Nolan Amblard/PycharmProjects/pokemonCardScanner'
-
-    #path1 = os.path.join(location, 'blurredImage.jpg')
-    #path2 = os.path.join(location, 'datagray.jpg')
-    path3 = os.path.join(location, 'frame.jpg')
-    #os.remove(path1)
-    #os.remove(path2)
-    os.remove(path3)
-
-
-

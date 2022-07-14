@@ -7,7 +7,7 @@ import mysql.connector
 
 def readCard():
     phoneCamFeed = False        # Flag signaling if images are being read live from phone camera or from image file
-    pathImage = 'tiltleft.jpg'      # File name of image
+    pathImage = 'testImages/tiltleft.jpg'      # File name of image
     cam = cv2.VideoCapture(1)   # Use Video source 1 = phone; 0 = computer webcam
 
     widthCard = 330
@@ -60,7 +60,7 @@ def readCard():
         except NameError:
             cv2.imshow('Canny Edge Detection', rot90frame)
         else:
-            #utils.compareCards(imgWarpColored.copy())
+            utils.compareCards(imgWarpColored.copy())
             cv2.imshow('Canny Edge Detection', imgWarpColored)
 
         if not phoneCamFeed: # If reading image file, display image until key is pressed
@@ -75,7 +75,7 @@ def readCard():
 
 
 if __name__ == '__main__':
-    isFirst = True
-    if isFirst:
-        cardData.createDatabase(isFirst)
+    # isFirst = True
+    # if isFirst:
+    #     cardData.createDatabase(isFirst)
     readCard()
