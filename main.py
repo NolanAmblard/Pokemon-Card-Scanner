@@ -2,11 +2,10 @@ import cv2
 import numpy as np
 import cardData
 import utils
-import mysql.connector
 
 
 def readCard():
-    phoneCamFeed = True        # Flag signaling if images are being read live from phone camera or from image file
+    phoneCamFeed = False        # Flag signaling if images are being read live from phone camera or from image file
     pathImage = 'testImages/tiltleft.jpg'      # File name of image
     cam = cv2.VideoCapture(1)   # Use Video source 1 = phone; 0 = computer webcam
 
@@ -49,26 +48,28 @@ def readCard():
         corners, maxArea = utils.biggestContour(contours)
         if len(corners) == 4:
             corners = [corners[0][0], corners[1][0], corners[2][0], corners[3][0]]
-            corners = utils.reorderCorners(corners)
+            corners = utils.reorderCorners(corners)  # Reorders corners to [topLeft, topRight, bottomLeft, bottomRight]
             #print(corners)
             pts1 = np.float32(corners)
             pts2 = np.float32([[0, 0], [widthCard, 0], [0, heightCard], [widthCard, heightCard]])
+            # Makes a matrix that transforms the detected card to a vertical rectangle
             matrix = cv2.getPerspectiveTransform(pts1, pts2)
+            # Transforms card to a rectangle widthCard x heightCard
             imgWarpColored = cv2.warpPerspective(rot90frame, matrix, (widthCard, heightCard))
 
         # Display image
-        try:
+        try:  # Will error if a rectangle was not found in the frame
             imgWarpColored
         except NameError:
             cv2.imshow('Canny Edge Detection', rot90frame)
         else:
-            found = utils.findCard(imgWarpColored.copy())
+            found = utils.findCard(imgWarpColored.copy())  # Check to see if a matching card was found
             cv2.imshow('Canny Edge Detection', imgWarpColored)
 
         if not phoneCamFeed:  # If reading image file, display image until key is pressed
             if not found:  # If a matching card has not been found
                 print('Please try another image. Your card could not be found.')
-            cv2.waitKey(0)
+            cv2.waitKey(0)  # Keeps window open until any key is pressed
             break
         elif cv2.waitKey(1) & 0xFF == ord('q'):  # If reading from video, quit if 'q' is pressed
             break
@@ -86,4 +87,4 @@ if __name__ == '__main__':
     isFirst = False  # True if this is your first time running this code; will create a new database
     if isFirst:
         cardData.createDatabase()
-    readCard()
+    readCard()  # Finds and reads from a saved image or live feed

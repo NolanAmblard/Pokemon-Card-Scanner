@@ -111,6 +111,7 @@ def swap(arr, ind1, ind2):
 
 
 # Compares the average hash of the current frame with the average has of every card in evolutions
+# Returns True if a matching card is found and False if not
 def findCard(imgWarpColor):
     # Converts image format from OpenCV format to PIL format
     # Converts from Blue Green Red to Red Green Blue image format
@@ -127,6 +128,7 @@ def findCard(imgWarpColor):
     # Compares this hash to a database of hash values for all cards in the Evolutions set
     cardinfo = cardData.compareCards(hashes)
 
+    # If a matching card was found, print its information and return True
     if cardinfo is not None:
         print("Card info: \n-------------------------------")
         print(f"Card Name:          {cardinfo['Card Name']}" )
@@ -140,4 +142,4 @@ def findCard(imgWarpColor):
         print(f"Pokemon Stage:      {cardinfo['Pokemon Stage']}")
         print(f"Pokemon Height (m): {cardinfo['Pokemon Height']}")
         return True
-    return False
+    return False  # If no matching card was found, return False

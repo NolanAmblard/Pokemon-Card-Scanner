@@ -2,7 +2,8 @@
 # The mega evolutions of the Pokemon in the Evoltuions Set are also included
 class Pokedex:
     def __init__(self):
-        self.pokemon = ("Bulbasaur",
+        # List of all 151 Pokemon + NA slot
+        self.pokemon = ("Bulbasaur",  # 001 Bulbasaur
                         "Ivysaur",
                         "Venusaur",
                         "Charmander",
@@ -12,7 +13,7 @@ class Pokedex:
                         "Wartortle",
                         "Blastoise",
                         "Caterpie",
-                        "Metapod",
+                        "Metapod",  # 011 Metapod
                         "Butterfree",
                         "Weedle",
                         "Kakuna",
@@ -22,7 +23,7 @@ class Pokedex:
                         "Pidgeot",
                         "Rattata",
                         "Raticate",
-                        "Spearow",
+                        "Spearow",  # 021 Spearow
                         "Fearow",
                         "Ekans",
                         "Arbok",
@@ -32,7 +33,7 @@ class Pokedex:
                         "Sandslash",
                         "Nidoran ♀",
                         "Nidorina",
-                        "Nidoqueen",
+                        "Nidoqueen",  # 031 Nidoqueen
                         "Nidoran ♂",
                         "Nidorino",
                         "Nidoking",
@@ -42,7 +43,7 @@ class Pokedex:
                         "Ninetales",
                         "Jigglypuff",
                         "Wigglytuff",
-                        "Zubat",
+                        "Zubat",  # 041 Zubat
                         "Golbat",
                         "Oddish",
                         "Gloom",
@@ -52,7 +53,7 @@ class Pokedex:
                         "Venonat",
                         "Venomoth",
                         "Diglett",
-                        "Dugtrio",
+                        "Dugtrio",  # 051 Dugtrio
                         "Meowth",
                         "Persian",
                         "Psyduck",
@@ -62,7 +63,7 @@ class Pokedex:
                         "Growlithe",
                         "Arcanine",
                         "Poliwag",
-                        "Poliwhirl",
+                        "Poliwhirl",  # 061 Poliwhirl
                         "Poliwrath",
                         "Abra",
                         "Kadabra",
@@ -72,7 +73,7 @@ class Pokedex:
                         "Machamp",
                         "Bellsprout",
                         "Weepinbell",
-                        "Victreebel",
+                        "Victreebel",  # 071 Victreebel
                         "Tentacool",
                         "Tentacruel",
                         "Geodude",
@@ -82,7 +83,7 @@ class Pokedex:
                         "Rapidash",
                         "Slowpoke",
                         "Slowbro",
-                        "Magnemite",
+                        "Magnemite",  # 081 Magnemite
                         "Magneton",
                         "Farfetch’d",
                         "Doduo",
@@ -92,7 +93,7 @@ class Pokedex:
                         "Grimer",
                         "Muk",
                         "Shellder",
-                        "Cloyster",
+                        "Cloyster",  # 091 Cloyster
                         "Gastly",
                         "Haunter",
                         "Gengar",
@@ -102,7 +103,7 @@ class Pokedex:
                         "Krabby",
                         "Kingler",
                         "Voltorb",
-                        "Electrode",
+                        "Electrode",  # 101 Electrode
                         "Exeggcute",
                         "Exeggutor",
                         "Cubone",
@@ -112,7 +113,7 @@ class Pokedex:
                         "Lickitung",
                         "Koffing",
                         "Weezing",
-                        "Rhyhorn",
+                        "Rhyhorn",  # 111 Rhyhorn
                         "Rhydon",
                         "Chansey",
                         "Tangela",
@@ -122,7 +123,7 @@ class Pokedex:
                         "Goldeen",
                         "Seaking",
                         "Staryu",
-                        "Starmie",
+                        "Starmie",  # 121 Starmie
                         "Mr. Mime",
                         "Scyther",
                         "Jynx",
@@ -132,7 +133,7 @@ class Pokedex:
                         "Tauros",
                         "Magikarp",
                         "Gyarados",
-                        "Lapras",
+                        "Lapras",  # 131 Lapras
                         "Ditto",
                         "Eevee",
                         "Vaporeon",
@@ -142,7 +143,7 @@ class Pokedex:
                         "Omanyte",
                         "Omastar",
                         "Kabuto",
-                        "Kabutops",
+                        "Kabutops",  # 141 Kabutops
                         "Aerodactyl",
                         "Snorlax",
                         "Articuno",
@@ -152,18 +153,18 @@ class Pokedex:
                         "Dragonair",
                         "Dragonite",
                         "Mewtwo",
-                        "Mew",
-                        "Mega Venusaur",
-                        "Mega Charizard",
-                        "Mega Blastoise",
-                        "Mega Pidgeot",
-                        "Mega Slowbro",
-                        "NA")
+                        "Mew",  # 151 Mew
+                        "Mega Venusaur",  # -003 Mega Venusaur
+                        "Mega Charizard",  # -006 Mega Charizard
+                        "Mega Blastoise",  # -009 Mega Blastoise
+                        "Mega Pidgeot",  # -018 Mega Pidgeot
+                        "Mega Slowbro",  # -080 Mega Slowbro
+                        "NA")  # 000 Represents NA
 
         # Stores the Pokedex number of all Kanto Pokemon
         # If a Pokemon has a mega evolution in the Evolutions set, there is a second entry dedicated to the mega
         # evolution that is the negative of it's pre-mega form (EX: Venusaur = 3; Mega Venusaur = -3)
-        self.dexnumber = (1,
+        self.dexnumber = (1,  # 001 Bulbasaur
                           2,
                           3,
                           4,
@@ -173,7 +174,7 @@ class Pokedex:
                           8,
                           9,
                           10,
-                          11,
+                          11,  # 011 Metapod
                           12,
                           13,
                           14,
@@ -183,7 +184,7 @@ class Pokedex:
                           18,
                           19,
                           20,
-                          21,
+                          21,  # 021 Spearow
                           22,
                           23,
                           24,
@@ -193,7 +194,7 @@ class Pokedex:
                           28,
                           29,
                           30,
-                          31,
+                          31,  # 031 Nidoqueen
                           32,
                           33,
                           34,
@@ -203,7 +204,7 @@ class Pokedex:
                           38,
                           39,
                           40,
-                          41,
+                          41,  # 041 Zubat
                           42,
                           43,
                           44,
@@ -213,7 +214,7 @@ class Pokedex:
                           48,
                           49,
                           50,
-                          51,
+                          51,  # 051 Dugtrio
                           52,
                           53,
                           54,
@@ -223,7 +224,7 @@ class Pokedex:
                           58,
                           59,
                           60,
-                          61,
+                          61,  # 061 Poliwhirl
                           62,
                           63,
                           64,
@@ -233,7 +234,7 @@ class Pokedex:
                           68,
                           69,
                           70,
-                          71,
+                          71,  # 071 Victreebel
                           72,
                           73,
                           74,
@@ -243,7 +244,7 @@ class Pokedex:
                           78,
                           79,
                           80,
-                          81,
+                          81,  # 081 Magnemite
                           82,
                           83,
                           84,
@@ -253,7 +254,7 @@ class Pokedex:
                           88,
                           89,
                           90,
-                          91,
+                          91,  # 091 Cloyster
                           92,
                           93,
                           94,
@@ -263,7 +264,7 @@ class Pokedex:
                           98,
                           99,
                           100,
-                          101,
+                          101,  # 101 Electrode
                           102,
                           103,
                           104,
@@ -273,7 +274,7 @@ class Pokedex:
                           108,
                           109,
                           110,
-                          111,
+                          111,  # 111 Rhyhorn
                           112,
                           113,
                           114,
@@ -283,7 +284,7 @@ class Pokedex:
                           118,
                           119,
                           120,
-                          121,
+                          121,  # 121 Starmie
                           122,
                           123,
                           124,
@@ -293,7 +294,7 @@ class Pokedex:
                           128,
                           129,
                           130,
-                          131,
+                          131,  # 131 Lapras
                           132,
                           133,
                           134,
@@ -303,7 +304,7 @@ class Pokedex:
                           138,
                           139,
                           140,
-                          141,
+                          141,  # 141 Kabutops
                           142,
                           143,
                           144,
@@ -313,17 +314,17 @@ class Pokedex:
                           148,
                           149,
                           150,
-                          151,
-                          -3,
-                          -6,
-                          -9,
-                          -18,
-                          -80,
-                          0)
+                          151,  # 151 Mew
+                          -3,  # -003 Mega Venusaur
+                          -6,  # -006 Mega Charizard
+                          -9,  # -009 Mega Blastoise
+                          -18,  # -018 Mega Pidgeot
+                          -80,  # -080 Mega Slowbro
+                          0)  # 000 Represents NA
 
         # Stage of Pokemon: Unevolved = basic; stage 1 = evolved once, stage 2 = evolved twice, Mega = mega evolution
         # Note: EX Cards are basic even if the Pokemon is an evolved Pokemon, this will be accounted for later
-        self.stage = ("basic",
+        self.stage = ("basic",  # 001 Bulbasaur
                         "1",
                         "2",
                         "basic",
@@ -333,7 +334,7 @@ class Pokedex:
                         "1",
                         "2",
                         "basic",
-                        "1",
+                        "1",  # 011 Metapod
                         "2",
                         "basic",
                         "1",
@@ -343,7 +344,7 @@ class Pokedex:
                         "2",
                         "basic",
                         "1",
-                        "basic",
+                        "basic",  # 021 Spearow
                         "1",
                         "basic",
                         "1",
@@ -353,18 +354,7 @@ class Pokedex:
                         "1",
                         "basic",
                         "1",
-                        "2",
-                        "basic",
-                        "1",
-                        "2",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
+                        "2",  # 031 Nidoqueen
                         "basic",
                         "1",
                         "2",
@@ -374,27 +364,7 @@ class Pokedex:
                         "1",
                         "basic",
                         "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "basic",
-                        "1",
-                        "2",
-                        "basic",
-                        "1",
-                        "2",
-                        "basic",
-                        "1",
-                        "2",
-                        "basic",
-                        "1",
-                        "2",
-                        "basic",
+                        "basic",  # 041 Zubat
                         "1",
                         "basic",
                         "1",
@@ -404,6 +374,37 @@ class Pokedex:
                         "basic",
                         "1",
                         "basic",
+                        "1",  # 051 Dugtrio
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",  # 061 Poliwhirl
+                        "2",
+                        "basic",
+                        "1",
+                        "2",
+                        "basic",
+                        "1",
+                        "2",
+                        "basic",
+                        "1",
+                        "2",  # 071 Victreebel
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",
+                        "2",
+                        "basic",
+                        "1",
+                        "basic",
+                        "1",
+                        "basic",  # 081 Magnemite
                         "1",
                         "basic",
                         "basic",
@@ -413,7 +414,7 @@ class Pokedex:
                         "basic",
                         "1",
                         "basic",
-                        "1",
+                        "1",  # 091 Cloyster
                         "basic",
                         "1",
                         "2",
@@ -423,7 +424,7 @@ class Pokedex:
                         "basic",
                         "1",
                         "basic",
-                        "1",
+                        "1",  # 101 Electrode
                         "basic",
                         "1",
                         "basic",
@@ -433,7 +434,7 @@ class Pokedex:
                         "basic",
                         "basic",
                         "1",
-                        "basic",
+                        "basic",  # 111 Rhyhorn
                         "1",
                         "basic",
                         "basic",
@@ -443,7 +444,7 @@ class Pokedex:
                         "basic",
                         "1",
                         "basic",
-                        "1",
+                        "1",  # 121 Starmie
                         "basic",
                         "basic",
                         "basic",
@@ -453,17 +454,17 @@ class Pokedex:
                         "basic",
                         "basic",
                         "1",
-                        "basic",
-                        "basic",
-                        "basic",
-                        "1",
-                        "1",
-                        "1",
+                        "basic",  # 131 Lapras
                         "basic",
                         "basic",
                         "1",
+                        "1",
+                        "1",
+                        "basic",
                         "basic",
                         "1",
+                        "basic",
+                        "1",  # 141 Kabutops
                         "basic",
                         "basic",
                         "basic",
@@ -473,16 +474,16 @@ class Pokedex:
                         "1",
                         "2",
                         "basic",
-                        "basic",
-                        "Mega",
-                        "Mega",
-                        "Mega",
-                        "Mega",
-                        "Mega",
-                        "NA")
+                        "basic",  # 151 Mew
+                        "Mega",  # -003 Mega Venusaur
+                        "Mega",  # -006 Mega Charizard
+                        "Mega",  # -009 Mega Blastoise
+                        "Mega",  # -018 Mega Pidgeot
+                        "Mega",  # -080 Mega Slowbro
+                        "NA")  # 000 Represents NA
 
         # Type of first 151 Pokemon according to the card game
-        self.type = ("Grass",
+        self.type = ("Grass",  # 001 Bulbasaur
                      "Grass",
                      "Grass",
                      "Fire",
@@ -492,17 +493,17 @@ class Pokedex:
                      "Water",
                      "Water",
                      "Grass",
+                     "Grass",  # 011 Metapod
                      "Grass",
                      "Grass",
                      "Grass",
                      "Grass",
-                     "Grass",
                      "Colorless",
                      "Colorless",
                      "Colorless",
                      "Colorless",
                      "Colorless",
-                     "Colorless",
+                     "Colorless",  # 021 Spearow
                      "Colorless",
                      "Psychic",
                      "Psychic",
@@ -512,17 +513,17 @@ class Pokedex:
                      "Fighting",
                      "Psychic",
                      "Psychic",
+                     "Psychic",  # 031 Nidoqueen
                      "Psychic",
                      "Psychic",
                      "Psychic",
-                     "Psychic",
-                     "Fairy",
-                     "Fairy",
+                     "Fairy",  # 035 Clefairy - Fairy type in Evolutions set, may be colorless in older sets
+                     "Fairy",  # 036 Clefable - "
                      "Fire",
                      "Fire",
                      "Colorless",
                      "Colorless",
-                     "Psychic",
+                     "Psychic",  # 041 Zubat
                      "Psychic",
                      "Grass",
                      "Grass",
@@ -532,7 +533,7 @@ class Pokedex:
                      "Grass",
                      "Grass",
                      "Fighting",
-                     "Fighting",
+                     "Fighting",  # 051 Dugtrio
                      "Colorless",
                      "Colorless",
                      "Water",
@@ -542,8 +543,8 @@ class Pokedex:
                      "Fire",
                      "Fire",
                      "Water",
+                     "Water",  # 061 Poliwhirl
                      "Water",
-                     "Water",
                      "Psychic",
                      "Psychic",
                      "Psychic",
@@ -552,7 +553,7 @@ class Pokedex:
                      "Fighting",
                      "Grass",
                      "Grass",
-                     "Grass",
+                     "Grass",  # 071 Victreebel
                      "Water",
                      "Water",
                      "Fighting",
@@ -560,29 +561,29 @@ class Pokedex:
                      "Fighting",
                      "Fire",
                      "Fire",
+                     "Water",
+                     "Water",
+                     "Lightning",  # 081 Magnemite
+                     "Lightning",
+                     "Colorless",
+                     "Colorless",
+                     "Colorless",
+                     "Water",
+                     "Water",
+                     "Psychic",
+                     "Psychic",
+                     "Water",
+                     "Water",  # 091 Cloyster
+                     "Psychic",
+                     "Psychic",
+                     "Psychic",
+                     "Fighting",
+                     "Psychic",
+                     "Psychic",
                      "Water",
                      "Water",
                      "Lightning",
-                     "Lightning",
-                     "Colorless",
-                     "Colorless",
-                     "Colorless",
-                     "Water",
-                     "Water",
-                     "Psychic",
-                     "Psychic",
-                     "Water",
-                     "Water",
-                     "Psychic",
-                     "Psychic",
-                     "Psychic",
-                     "Fighting",
-                     "Psychic",
-                     "Psychic",
-                     "Water",
-                     "Water",
-                     "Lightning",
-                     "Lightning",
+                     "Lightning",  # 101 Electrode
                      "Grass",
                      "Grass",
                      "Fighting",
@@ -592,7 +593,7 @@ class Pokedex:
                      "Colorless",
                      "Psychic",
                      "Psychic",
-                     "Fighting",
+                     "Fighting",  # 111 Rhyhorn
                      "Fighting",
                      "Colorless",
                      "Grass",
@@ -602,7 +603,7 @@ class Pokedex:
                      "Water",
                      "Water",
                      "Water",
-                     "Water",
+                     "Water",  # 121 Starmie
                      "Psychic",
                      "Grass",
                      "Psychic",
@@ -612,36 +613,36 @@ class Pokedex:
                      "Colorless",
                      "Water",
                      "Water",
-                     "Water",
+                     "Water",  # 131 Lapras
                      "Colorless",
-                     "Colorless",
-                     "Water",
-                     "Lightning",
-                     "Fire",
-                     "Colorless",
-                     "Water",
-                     "Water",
-                     "Fighting",
-                     "Fighting",
-                     "Fighting",
                      "Colorless",
                      "Water",
                      "Lightning",
                      "Fire",
-                     "Colorless",  # 147 Dratini - Colorless Based on generation 1 sets
                      "Colorless",
+                     "Water",
+                     "Water",
+                     "Fighting",
+                     "Fighting",  # 141 Kabutops
+                     "Fighting",
                      "Colorless",
-                     "Psychic",
-                     "Psychic",
-                     "Grass",
+                     "Water",
+                     "Lightning",
                      "Fire",
-                     "Water",
-                     "Colorless",
-                     "Water",
-                     "NA")
+                     "Colorless",  # 147 Dratini - Colorless in Generation 1 & Evolutions (newer cards might be dragon)
+                     "Colorless",  # 148 Dragonair - "
+                     "Colorless",  # 149 Dragonite - "
+                     "Psychic",
+                     "Psychic",  # 151 Mew
+                     "Grass",  # -003 Mega Venusaur
+                     "Fire",  # -006 Mega Charizard
+                     "Water",  # -009 Mega Blastoise
+                     "Colorless",  # -018 Mega Pidgeot
+                     "Water",  # -080 Mega Slowpoke
+                     "NA")  # 000 Represents NA
 
-        # Height of Pokemon in meters
-        self.height = (0.7, # 001 Bulbasaur
+        # Height of Pokemon in meters + 0 for NA
+        self.height = (0.7,  # 001 Bulbasaur
                        1.0,
                        2.0,
                        0.6,
@@ -651,7 +652,7 @@ class Pokedex:
                        1.0,
                        1.6,
                        0.3,
-                       0.7,
+                       0.7,  # 011 Metapod
                        1.1,
                        0.3,
                        0.6,
@@ -661,7 +662,7 @@ class Pokedex:
                        1.5,
                        0.3,
                        0.7,
-                       0.3,
+                       0.3,  # 021 Spearow
                        1.2,
                        2.0,
                        3.5,
@@ -671,7 +672,7 @@ class Pokedex:
                        1.0,
                        0.4,
                        0.8,
-                       1.3,
+                       1.3,  # 031 Nidoqueen
                        0.5,
                        0.9,
                        1.4,
@@ -681,7 +682,7 @@ class Pokedex:
                        1.1,
                        0.5,
                        1.0,
-                       0.8,
+                       0.8,  # 041 Zubat
                        1.6,
                        0.5,
                        0.8,
@@ -691,7 +692,7 @@ class Pokedex:
                        1.0,
                        1.5,
                        0.2,
-                       0.7,
+                       0.7,  # 051 Dugtrio
                        0.4,
                        1.0,
                        0.8,
@@ -701,7 +702,7 @@ class Pokedex:
                        0.7,
                        1.9,
                        0.6,
-                       1.0,
+                       1.0,  # 061 Poliwhirl
                        1.3,
                        0.9,
                        1.3,
@@ -711,7 +712,7 @@ class Pokedex:
                        1.6,
                        0.7,
                        1.0,
-                       1.7,
+                       1.7,  # 071 Victreebel
                        0.9,
                        1.6,
                        0.4,
@@ -721,7 +722,7 @@ class Pokedex:
                        1.7,
                        1.2,
                        1.6,
-                       0.3,
+                       0.3,  # 081 Magnemite
                        1.0,
                        0.8,
                        1.4,
@@ -731,7 +732,7 @@ class Pokedex:
                        0.9,
                        1.2,
                        0.3,
-                       1.5,
+                       1.5,  # 091 Cloyster
                        1.3,
                        1.6,
                        1.5,
@@ -741,7 +742,7 @@ class Pokedex:
                        0.4,
                        1.3,
                        0.5,
-                       1.2,
+                       1.2,  # 101 Electrode
                        0.4,
                        2.0,
                        0.4,
@@ -751,7 +752,7 @@ class Pokedex:
                        1.2,
                        0.6,
                        1.2,
-                       1.0,
+                       1.0,  # 111 Rhyhorn
                        1.9,
                        1.1,
                        1.0,
@@ -761,7 +762,7 @@ class Pokedex:
                        0.6,
                        1.3,
                        0.8,
-                       1.1,
+                       1.1,  # 121 Starmie
                        1.3,
                        1.5,
                        1.4,
@@ -771,7 +772,7 @@ class Pokedex:
                        1.4,
                        0.9,
                        6.5,
-                       2.5,
+                       2.5,  # 131 Lapras
                        0.3,
                        0.3,
                        1.0,
@@ -781,7 +782,7 @@ class Pokedex:
                        0.4,
                        1.0,
                        0.5,
-                       1.3,
+                       1.3,  # 141 Kabutops
                        1.8,
                        2.1,
                        1.7,
@@ -791,13 +792,12 @@ class Pokedex:
                        4.0,
                        2.2,
                        2.0,
-                       0.4, # 151 Mew
-                       2.4, # -003 Mega Venusaur
-                       1.7,
-                       1.6,
-                       2.2,
-                       2.0,
-                       0.0 # Represents NA
-                       )
+                       0.4,  # 151 Mew
+                       2.4,  #-003 Mega Venusaur
+                       1.7,  #-006 Mega Charizard
+                       1.6,  #-009 Mega Blastoise
+                       2.2,  #-018 Mega Pidgeot
+                       2.0,  #-080 Mega Slowbro
+                       0.0)  # 000 Represents NA
 
-        self.numpoke = len(self.pokemon)
+        self.numpoke = len(self.pokemon)  # Number of Pokemon

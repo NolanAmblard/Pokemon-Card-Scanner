@@ -2,7 +2,6 @@ import mysql.connector
 import cardSet
 import pokedex
 import evolutionsSet
-from PIL import Image
 import imagehash
 import numpy as np
 
@@ -105,10 +104,10 @@ def initializeDatabase():
     db.commit()
 
 
-# Returns the values of the matching Pokemon card if the hash difference is within the cutoff range
+# Returns a dictionary of values of the matching Pokemon card if the hash distance is within the cutoff range
 # If no matching card is found, it returns None
 def compareCards(hashes):
-    cutoff = 18
+    cutoff = 18  # Arbitrarily set cutoff value; was found through testing
     # Connects to the pokemon card database
     db = mysql.connector.connect(
         host="localhost",
@@ -117,59 +116,67 @@ def compareCards(hashes):
         database=databasename
     )
 
-    mycursor = db.cursor(buffered=True)
+    mycursor = db.cursor(buffered=True)  # Create cursor with buffered=True so that mycursor.rowcount doesn't return 0
 
-    mycursor.execute("SELECT * FROM EvolutionsCards")
+    mycursor.execute("SELECT * FROM EvolutionsCards")  # Gets values from EvolutionsCards (hashes)
 
-    avghashes = np.zeros(4)
-    whashes = np.zeros(4)
-    phashes = np.zeros(4)
-    dhashes = np.zeros(4)
+    # Create arrays of size=4 that store hash differences for each orientation; every hashing method gets its own array
+    avghashesDists = np.zeros(4)
+    whashesDists = np.zeros(4)
+    phashesDists = np.zeros(4)
+    dhashesDists = np.zeros(4)
 
-    maxHashDists = []
+    maxHashDists = []  # An array that will store the maximum of the minimum hash difference for each card
 
-    for _ in range(mycursor.rowcount):
+    for _ in range(mycursor.rowcount):  # Loop through each row in EvolutionsCards table
+        # Get the values stored in each row
+        # Note: the hashes are stored as Strings in the database because MySQL doesn't support storing hashes
         cardnum, \
             avghash1, avghash2, avghash3, avghash4, \
             whash1, whash2, whash3, whash4,\
             phash1, phash2, phash3, phash4, \
             dhash1, dhash2, dhash3, dhash4 = mycursor.fetchone()
 
-        avghashes[0] = hashes[0] - imagehash.hex_to_hash(avghash1)
-        avghashes[1] = hashes[0] - imagehash.hex_to_hash(avghash2)
-        avghashes[2] = hashes[0] - imagehash.hex_to_hash(avghash3)
-        avghashes[3] = hashes[0] - imagehash.hex_to_hash(avghash4)
+        # Convert each hash from a String to a hash and find the distance from the scanned image
+        avghashesDists[0] = hashes[0] - imagehash.hex_to_hash(avghash1)
+        avghashesDists[1] = hashes[0] - imagehash.hex_to_hash(avghash2)
+        avghashesDists[2] = hashes[0] - imagehash.hex_to_hash(avghash3)
+        avghashesDists[3] = hashes[0] - imagehash.hex_to_hash(avghash4)
 
-        whashes[0] = hashes[1] - imagehash.hex_to_hash(whash1)
-        whashes[1] = hashes[1] - imagehash.hex_to_hash(whash2)
-        whashes[2] = hashes[1] - imagehash.hex_to_hash(whash3)
-        whashes[3] = hashes[1] - imagehash.hex_to_hash(whash4)
+        whashesDists[0] = hashes[1] - imagehash.hex_to_hash(whash1)
+        whashesDists[1] = hashes[1] - imagehash.hex_to_hash(whash2)
+        whashesDists[2] = hashes[1] - imagehash.hex_to_hash(whash3)
+        whashesDists[3] = hashes[1] - imagehash.hex_to_hash(whash4)
 
-        phashes[0] = hashes[2] - imagehash.hex_to_hash(phash1)
-        phashes[1] = hashes[2] - imagehash.hex_to_hash(phash2)
-        phashes[2] = hashes[2] - imagehash.hex_to_hash(phash3)
-        phashes[3] = hashes[2] - imagehash.hex_to_hash(phash4)
+        phashesDists[0] = hashes[2] - imagehash.hex_to_hash(phash1)
+        phashesDists[1] = hashes[2] - imagehash.hex_to_hash(phash2)
+        phashesDists[2] = hashes[2] - imagehash.hex_to_hash(phash3)
+        phashesDists[3] = hashes[2] - imagehash.hex_to_hash(phash4)
 
-        dhashes[0] = hashes[3] - imagehash.hex_to_hash(dhash1)
-        dhashes[1] = hashes[3] - imagehash.hex_to_hash(dhash2)
-        dhashes[2] = hashes[3] - imagehash.hex_to_hash(dhash3)
-        dhashes[3] = hashes[3] - imagehash.hex_to_hash(dhash4)
+        dhashesDists[0] = hashes[3] - imagehash.hex_to_hash(dhash1)
+        dhashesDists[1] = hashes[3] - imagehash.hex_to_hash(dhash2)
+        dhashesDists[2] = hashes[3] - imagehash.hex_to_hash(dhash3)
+        dhashesDists[3] = hashes[3] - imagehash.hex_to_hash(dhash4)
 
-        hashDistances = [min(avghashes), min(whashes), min(phashes), min(dhashes)]
-        maxHashDists.append(max(hashDistances))
+        # Find the minimum of each hashing method
+        # This should make us look at the correct card orientation
+        hashDistances = [min(avghashesDists), min(whashesDists), min(phashesDists), min(dhashesDists)]
+        maxHashDists.append(max(hashDistances))  # Find the max of the mins of each hashing method to reduce error
 
-    print(min(maxHashDists))
-    if min(maxHashDists) < cutoff:
-        minCardNum = maxHashDists.index(min(maxHashDists)) + 1
+    if min(maxHashDists) < cutoff:  # If the smallest hash distance is less than the cutoff, we have found our card
+        minCardNum = maxHashDists.index(min(maxHashDists)) + 1  # Find the card number of the card
 
+        # Get values from minCardNum row of EvolutionsSet table
         mycursor.execute(f"SELECT * FROM EvolutionsSet WHERE cardnumber={minCardNum}")
         vals = mycursor.fetchone()
         _, poke, cardname, rarity, cardtype = vals
 
+        # Get values from poke row of Pokemon table
         mycursor.execute("SELECT * FROM Pokemon WHERE pokemon=%s", (poke,))
         vals2 = mycursor.fetchone()
         dexnumber, _, poketype, height, stage = vals2
 
+        # Return dictionary with traits about cards
         return {'Card Number': minCardNum,
                 'Pokemon': poke,
                 'Card Name': cardname,

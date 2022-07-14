@@ -2,7 +2,8 @@
 # This can be changed to work for any card set, but currently the values of the Evolutions set are hard coded in
 class CardSet:
     def __init__(self):
-        self.cardnamelist = ("Venusaur EX",
+        # List of the names of cards in the Evolutions Set
+        self.cardnamelist = ("Venusaur EX",  # 001 Venusar EX
                              "M Venusaur EX",
                              "Caterpie",
                              "Metapod",
@@ -12,7 +13,7 @@ class CardSet:
                              "Tangela",
                              "Charmander",
                              "Charmeleon",
-                             "Charizard",
+                             "Charizard",  # 011 Charizard
                              "Charizard EX",
                              "M Charizard EX",
                              "Vulpix",
@@ -22,7 +23,7 @@ class CardSet:
                              "Arcanine",
                              "Ponyta",
                              "Magmar",
-                             "Blastoise EX",
+                             "Blastoise EX",  # 021 Blastoise
                              "M Blastoise EX",
                              "Poliwag",
                              "Poliwhirl",
@@ -32,7 +33,7 @@ class CardSet:
                              "Seel",
                              "Dewgong",
                              "Staryu",
-                             "Starmie",
+                             "Starmie",  # 031 Starmie
                              "Starmie BREAK",
                              "Magikarp",
                              "Gyarados",
@@ -42,7 +43,7 @@ class CardSet:
                              "Magneton",
                              "Voltorb",
                              "Electrode",
-                             "Electabuzz",
+                             "Electabuzz",  # 041 Electabuzz
                              "Zapdos",
                              "Nidoran ♂",
                              "Nidorino",
@@ -52,7 +53,7 @@ class CardSet:
                              "Haunter",
                              "Drowzee",
                              "Koffing",
-                             "Mewtwo",
+                             "Mewtwo",  # 051 Mewtwo
                              "Mewtwo EX",
                              "Mew",
                              "Sandshrew",
@@ -62,7 +63,7 @@ class CardSet:
                              "Machoke",
                              "Machamp",
                              "Machamp BREAK",
-                             "Onix",
+                             "Onix",  # 061 Onix
                              "Hitmonchan",
                              "Clefairy",
                              "Pidgeot EX",
@@ -72,7 +73,7 @@ class CardSet:
                              "Farfetch'd",
                              "Doduo",
                              "Chansey",
-                             "Porygon",
+                             "Porygon",  # 071 Porygon
                              "Dragonite EX",
                              "Blastoise Spirit Link",
                              "Brock's Grit",
@@ -82,7 +83,7 @@ class CardSet:
                              "Full Heal",
                              "Maintenance",
                              "Misty's Determination",
-                             "Pidgeot Spirit Link",
+                             "Pidgeot Spirit Link",  # 081 Pidgeot Spirit Link
                              "Pokedex",
                              "Potion",
                              "Professor Oak's Hint",
@@ -92,7 +93,7 @@ class CardSet:
                              "Switch",
                              "Venusaur Spirit Link",
                              "Double Colorless Energy",
-                             "Grass Energy",
+                             "Grass Energy",  # 091 Grass Energy
                              "Fire Energy",
                              "Water Energy",
                              "Electric Energy",
@@ -102,7 +103,7 @@ class CardSet:
                              "Metal Energy",
                              "Fairy Energy",
                              "M Venusaur EX",
-                             "M Charizard EX",
+                             "M Charizard EX",  # 101 M Charizard EX
                              "M Blastoise EX",
                              "Mewtwo EX",
                              "Pidgeot EX",
@@ -112,11 +113,12 @@ class CardSet:
                              "Misty's Determination",
                              "Exeggutor",
                              "Flying Pikachu",
-                             "Surfing Pikachu",
+                             "Surfing Pikachu",  # 111 Surfing Pikachu
                              "Imakuni?'s Doduo",
                              "Here Comes Team Rocket!")
 
-        self.pokemonlist = ("Venusaur",
+        # List of every card's respective Pokemon. Trainer & energy cards are stored as 'NA'
+        self.pokemonlist = ("Venusaur",  # 001 Venusaur EX
                             "Mega Venusaur",
                             "Caterpie",
                             "Metapod",
@@ -126,7 +128,7 @@ class CardSet:
                             "Tangela",
                             "Charmander",
                             "Charmeleon",
-                            "Charizard",
+                            "Charizard",  # 011 Charizard
                             "Charizard",
                             "Mega Charizard",
                             "Vulpix",
@@ -136,7 +138,7 @@ class CardSet:
                             "Arcanine",
                             "Ponyta",
                             "Magmar",
-                            "Blastoise",
+                            "Blastoise",  # 021 Blastoise EX
                             "Mega Blastoise",
                             "Poliwag",
                             "Poliwhirl",
@@ -146,7 +148,7 @@ class CardSet:
                             "Seel",
                             "Dewgong",
                             "Staryu",
-                            "Starmie",
+                            "Starmie",  # 031 Starmie
                             "Starmie",
                             "Magikarp",
                             "Gyarados",
@@ -156,7 +158,7 @@ class CardSet:
                             "Magneton",
                             "Voltorb",
                             "Electrode",
-                            "Electabuzz",
+                            "Electabuzz",  # 041 Electabuzz
                             "Zapdos",
                             "Nidoran ♂",
                             "Nidorino",
@@ -166,7 +168,7 @@ class CardSet:
                             "Haunter",
                             "Drowzee",
                             "Koffing",
-                            "Mewtwo",
+                            "Mewtwo",  # 051 Mewtwo
                             "Mewtwo",
                             "Mew",
                             "Sandshrew",
@@ -176,7 +178,7 @@ class CardSet:
                             "Machoke",
                             "Machamp",
                             "Machamp",
-                            "Onix",
+                            "Onix",  # 061 Onix
                             "Hitmonchan",
                             "Clefairy",
                             "Pidgeot",
@@ -186,7 +188,7 @@ class CardSet:
                             "Farfetch'd",
                             "Doduo",
                             "Chansey",
-                            "Porygon",
+                            "Porygon",  # 071 Porygon
                             "Dragonite",
                             "NA",
                             "NA",
@@ -196,6 +198,7 @@ class CardSet:
                             "NA",
                             "NA",
                             "NA",
+                            "NA",  # 081 Pidgeot Spirit Link
                             "NA",
                             "NA",
                             "NA",
@@ -205,8 +208,7 @@ class CardSet:
                             "NA",
                             "NA",
                             "NA",
-                            "NA",
-                            "NA",
+                            "NA",  # 091 Grass Energy
                             "NA",
                             "NA",
                             "NA",
@@ -216,7 +218,7 @@ class CardSet:
                             "NA",
                             "NA",
                             "Mega Venusaur",
-                            "Mega Charizard",
+                            "Mega Charizard",  # 101 M Charizard EX
                             "Mega Blastoise",
                             "Mewtwo",
                             "Pidgeot",
@@ -226,10 +228,11 @@ class CardSet:
                             "NA",
                             "Exeggutor",
                             "Flying Pikachu",
-                            "Surfing Pikachu",
+                            "Surfing Pikachu",  # 111 Surfing Pikachu
                             "Imakuni?'s Doduo",
                             "NA")
 
+        # List of the rarity of each card in the Evolutions set
         self.rarity = (  # Regular Pokemon
             "EX Rare",  # 001 Venusar EX
             "EX Rare",
@@ -349,7 +352,8 @@ class CardSet:
             "Secret Rare",
             "Secret Rare")
 
-        self.cardtype = ("Pokemon",
+        # List of the card type of each card in the Evolutions set
+        self.cardtype = ("Pokemon",  # 001 Venusaur EX
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -359,6 +363,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 011 Charizard
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -368,6 +373,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 021 Blastoise EX
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -377,6 +383,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 031 Starmie
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -386,6 +393,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 041 Electabuzz
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -395,6 +403,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 051 Mewtwo
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -404,6 +413,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
+                         "Pokemon",  # 061 Onix
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -413,13 +423,7 @@ class CardSet:
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
-                         "Pokemon",
+                         "Pokemon",  # 071 Porygon
                          "Pokemon",
                          "Trainer Item",
                          "Trainer Supporter",
@@ -429,7 +433,7 @@ class CardSet:
                          "Trainer Item",
                          "Trainer Item",
                          "Trainer Supporter",
-                         "Trainer Item",
+                         "Trainer Item",  # 081 Pidgeot Spirit Link
                          "Trainer Item",
                          "Trainer Item",
                          "Trainer Supporter",
@@ -439,7 +443,7 @@ class CardSet:
                          "Trainer Item",
                          "Trainer Item",
                          "Energy",
-                         "Energy",
+                         "Energy",  # 091 Grass Energy
                          "Energy",
                          "Energy",
                          "Energy",
@@ -449,7 +453,7 @@ class CardSet:
                          "Energy",
                          "Energy",
                          "Pokemon",
-                         "Pokemon",
+                         "Pokemon",  # 101 M Charizard EX
                          "Pokemon",
                          "Pokemon",
                          "Pokemon",
@@ -459,8 +463,8 @@ class CardSet:
                          "Trainer Supporter",
                          "Pokemon",
                          "Pokemon",
-                         "Pokemon",
+                         "Pokemon",  # 111 Surfing Pikachu
                          "Pokemon",
                          "Trainer Supporter")
 
-        self.numCards = len(self.cardnamelist)
+        self.numCards = len(self.cardnamelist)  # Number of cards in the Evolutions set
