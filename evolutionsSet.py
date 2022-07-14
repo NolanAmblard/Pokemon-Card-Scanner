@@ -14,16 +14,32 @@ class EvolutionsSet:
 
     # Gets hashes of all cards in Evolutions set
     def getHashes(self, type):
-        arr = np.empty(self.setSize, dtype=object)
+        arr = np.empty((self.setSize, 4), dtype=object)
         for i in range(1, self.setSize + 1):
             filename = 'evolutionsCardsImages/' + str(i).rjust(3, '0') + '.png'
+            img = Image.open(filename)
             match type:
                 case 'hash':
-                    arr[i - 1] = str(imagehash.average_hash(Image.open(filename)))
+                    arr[i - 1][0] = str(imagehash.average_hash(img))
+                    arr[i - 1][1] = str(imagehash.whash(img))
+                    arr[i - 1][2] = str(imagehash.phash(img))
+                    arr[i - 1][3] = str(imagehash.dhash(img))
                 case 'hashmir':
-                    arr[i - 1] = str(imagehash.average_hash(ImageOps.mirror(Image.open(filename))))
+                    imgmir = ImageOps.mirror(img)
+                    arr[i - 1][0] = str(imagehash.average_hash(imgmir))
+                    arr[i - 1][1] = str(imagehash.whash(imgmir))
+                    arr[i - 1][2] = str(imagehash.phash(imgmir))
+                    arr[i - 1][3] = str(imagehash.dhash(imgmir))
                 case 'hashud':
-                    arr[i - 1] = str(imagehash.average_hash(ImageOps.flip(Image.open(filename))))
+                    imgflip = ImageOps.flip(img)
+                    arr[i - 1][0] = str(imagehash.average_hash(imgflip))
+                    arr[i - 1][1] = str(imagehash.whash(imgflip))
+                    arr[i - 1][2] = str(imagehash.phash(imgflip))
+                    arr[i - 1][3] = str(imagehash.dhash(imgflip))
                 case 'hashudmir':
-                    arr[i - 1] = str(imagehash.average_hash(ImageOps.flip(ImageOps.mirror(Image.open(filename)))))
+                    imgmirflip = ImageOps.flip(ImageOps.mirror(img))
+                    arr[i - 1][0] = str(imagehash.average_hash(imgmirflip))
+                    arr[i - 1][1] = str(imagehash.whash(imgmirflip))
+                    arr[i - 1][2] = str(imagehash.phash(imgmirflip))
+                    arr[i - 1][3] = str(imagehash.dhash(imgmirflip))
         return arr

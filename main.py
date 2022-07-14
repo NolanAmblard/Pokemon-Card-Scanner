@@ -6,12 +6,14 @@ import mysql.connector
 
 
 def readCard():
-    phoneCamFeed = False        # Flag signaling if images are being read live from phone camera or from image file
+    phoneCamFeed = True        # Flag signaling if images are being read live from phone camera or from image file
     pathImage = 'testImages/tiltleft.jpg'      # File name of image
     cam = cv2.VideoCapture(1)   # Use Video source 1 = phone; 0 = computer webcam
 
     widthCard = 330
     heightCard = 440
+
+    found = False
 
     while True:
         # Check if using phone camera or saved picture
@@ -60,13 +62,19 @@ def readCard():
         except NameError:
             cv2.imshow('Canny Edge Detection', rot90frame)
         else:
-            utils.compareCards(imgWarpColored.copy())
+            found = utils.findCard(imgWarpColored.copy())
             cv2.imshow('Canny Edge Detection', imgWarpColored)
 
-        if not phoneCamFeed: # If reading image file, display image until key is pressed
+        if not phoneCamFeed:  # If reading image file, display image until key is pressed
+            if not found:  # If a matching card has not been found
+                print('Please try another image. Your card could not be found.')
             cv2.waitKey(0)
             break
-        elif cv2.waitKey(1) & 0xFF == ord('q'): # If reading from video, quit if 'q' is pressed
+        elif cv2.waitKey(1) & 0xFF == ord('q'):  # If reading from video, quit if 'q' is pressed
+            break
+        elif found:  # If the input is a video and a matching card has been found
+            print('\n\nPress any key to exit.')
+            cv2.waitKey(0)
             break
 
     # Stops cameras and closes display window
@@ -75,7 +83,7 @@ def readCard():
 
 
 if __name__ == '__main__':
-    isFirst = True # True if this is your first time running this code; will create a new database
+    isFirst = False  # True if this is your first time running this code; will create a new database
     if isFirst:
         cardData.createDatabase()
-    #readCard()
+    readCard()

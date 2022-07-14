@@ -3,6 +3,7 @@ import numpy as np
 import math
 from PIL import Image
 import imagehash
+import cardData
 
 
 # Returns the corners & area of the biggest contour
@@ -110,16 +111,33 @@ def swap(arr, ind1, ind2):
 
 
 # Compares the average hash of the current frame with the average has of every card in evolutions
-def compareCards(imgWarpColor):
+def findCard(imgWarpColor):
     # Converts image format from OpenCV format to PIL format
     # Converts from Blue Green Red to Red Green Blue image format
     convertedImgWarpColor = cv2.cvtColor(imgWarpColor, cv2.COLOR_BGR2RGB)
 
-    hash0 = imagehash.average_hash(Image.fromarray(convertedImgWarpColor))
-    hash1 = imagehash.average_hash(Image.open('evolutionsCardsImages/020.png'))
-    cutoff = 10  # Can change, just a placeholder
+    # Gets the average hash value from the frame
+    hashes = np.empty(4, dtype=object)
+    scannedCard = Image.fromarray(convertedImgWarpColor)
+    hashes[0] = imagehash.average_hash(scannedCard)
+    hashes[1] = imagehash.whash(scannedCard)
+    hashes[2] = imagehash.phash(scannedCard)
+    hashes[3] = imagehash.dhash(scannedCard)
 
-    hashDiff = hash0 - hash1
-    print(hashDiff)
-    if hashDiff < cutoff:
-        print('These images are similar!')
+    # Compares this hash to a database of hash values for all cards in the Evolutions set
+    cardinfo = cardData.compareCards(hashes)
+
+    if cardinfo is not None:
+        print("Card info: \n-------------------------------")
+        print(f"Card Name:          {cardinfo['Card Name']}" )
+        print(f"Card Number:        {cardinfo['Card Number']}")
+        print(f"Card Rarity:        {cardinfo['Rarity']}")
+        print(f"Card Type:          {cardinfo['Card Type']}\n\n")
+        print("Pokemon info: \n-------------------------------")
+        print(f"Pokemon:            {cardinfo['Pokemon']}")
+        print(f"Pokedex Number:     {cardinfo['Pokedex Number']}")
+        print(f"Pokemon Card Type:  {cardinfo['Pokemon Type']}")
+        print(f"Pokemon Stage:      {cardinfo['Pokemon Stage']}")
+        print(f"Pokemon Height (m): {cardinfo['Pokemon Height']}")
+        return True
+    return False
