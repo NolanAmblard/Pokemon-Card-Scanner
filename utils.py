@@ -6,6 +6,16 @@ import imagehash
 import cardData
 
 
+# Get the width of the cards/images
+def getWidthCard():
+    return 330
+
+
+# Get the height of the cards/images
+def getHeightCard():
+    return 440
+
+
 # Returns the corners & area of the biggest contour
 def biggestContour(contours):
     biggest = np.array([])
@@ -128,10 +138,10 @@ def findCard(imgWarpColor):
     # Compares this hash to a database of hash values for all cards in the Evolutions set
     cardinfo = cardData.compareCards(hashes)
 
-    # If a matching card was found, print its information and return True
+    # If a matching card was found, print its information and return True and an image of the card
     if cardinfo is not None:
         print("Card info: \n-------------------------------")
-        print(f"Card Name:          {cardinfo['Card Name']}" )
+        print(f"Card Name:          {cardinfo['Card Name']}")
         print(f"Card Number:        {cardinfo['Card Number']}")
         print(f"Card Rarity:        {cardinfo['Rarity']}")
         print(f"Card Type:          {cardinfo['Card Type']}\n\n")
@@ -141,5 +151,58 @@ def findCard(imgWarpColor):
         print(f"Pokemon Card Type:  {cardinfo['Pokemon Type']}")
         print(f"Pokemon Stage:      {cardinfo['Pokemon Stage']}")
         print(f"Pokemon Height (m): {cardinfo['Pokemon Height']}")
-        return True
-    return False  # If no matching card was found, return False
+        return True, getMatchingCard(cardinfo['Card Number'])
+
+    # If no matching card was found, return False & black image
+    return False, np.zeros((getHeightCard(), getWidthCard(), 3), np.uint8)
+
+
+# Returns the matching card image given the card number
+def getMatchingCard(cardNum):
+    filename = 'evolutionsCardsImages/' + str(cardNum).rjust(3, '0') + '.png'
+    foundCard = cv2.imread(filename)
+    return cv2.resize(foundCard, (getWidthCard(), getHeightCard()))
+
+
+# Draws a rectangle given a cv2 image and 4 corners
+def drawRectangle(img, corners):
+    thickness = 10  # Thickness of rectangle borders
+    cv2.line(img, (corners[0][0][0], corners[0][0][1]), (corners[1][0][0], corners[1][0][1]), (0, 255, 0), thickness)
+    cv2.line(img, (corners[0][0][0], corners[0][0][1]), (corners[2][0][0], corners[2][0][1]), (0, 255, 0), thickness)
+    cv2.line(img, (corners[3][0][0], corners[3][0][1]), (corners[2][0][0], corners[2][0][1]), (0, 255, 0), thickness)
+    cv2.line(img, (corners[3][0][0], corners[3][0][1]), (corners[1][0][0], corners[1][0][1]), (0, 255, 0), thickness)
+    return img
+
+
+# Creates final display image by stacking all 8 images and adding labels
+def makeDisplayImage(imgArr, labels):
+    rows = len(imgArr)  # Get number of rows of images
+    cols = len(imgArr[0])  # Get numbers of images in a row
+
+    # Loop through the images
+    # OpenCV stores grayscale images as 2D arrays, so we need to convert them to 3D arrays to be able to combine them
+    # with the colored images
+    for x in range(0, rows):
+        for y in range(0, cols):
+            if len(imgArr[x][y].shape) == 2:
+                imgArr[x][y] = cv2.cvtColor(imgArr[x][y], cv2.COLOR_GRAY2BGR)
+
+    # Create a black image
+    imageBlank = np.zeros((getHeightCard(), getWidthCard(), 3), np.uint8)
+
+    # Stack the images
+    hor = [imageBlank] * rows
+    for x in range(0, rows):
+        hor[x] = np.hstack(imgArr[x])
+    stacked = np.vstack(hor)
+
+    # Add labels via white rectangles and text
+    for d in range(0, rows):
+        for c in range(0, cols):
+            cv2.rectangle(stacked, (c * getWidthCard(), d * getHeightCard()),
+                          (c * getWidthCard() + getWidthCard(), d * getHeightCard() + 32), (255, 255, 255),
+                          cv2.FILLED)
+            cv2.putText(stacked, labels[d][c], (getWidthCard() * c + 10, getHeightCard() * d + 23), cv2.FONT_HERSHEY_DUPLEX, 1,
+                        (0, 0, 0), 2)
+
+    return stacked

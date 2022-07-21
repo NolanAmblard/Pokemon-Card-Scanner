@@ -163,6 +163,7 @@ def compareCards(hashes):
         hashDistances = [min(avghashesDists), min(whashesDists), min(phashesDists), min(dhashesDists)]
         maxHashDists.append(max(hashDistances))  # Find the max of the mins of each hashing method to reduce error
 
+    print(min(maxHashDists))
     if min(maxHashDists) < cutoff:  # If the smallest hash distance is less than the cutoff, we have found our card
         minCardNum = maxHashDists.index(min(maxHashDists)) + 1  # Find the card number of the card
 
