@@ -140,17 +140,7 @@ def findCard(imgWarpColor):
 
     # If a matching card was found, print its information and return True and an image of the card
     if cardinfo is not None:
-        print("Card info: \n-------------------------------")
-        print(f"Card Name:          {cardinfo['Card Name']}")
-        print(f"Card Number:        {cardinfo['Card Number']}")
-        print(f"Card Rarity:        {cardinfo['Rarity']}")
-        print(f"Card Type:          {cardinfo['Card Type']}\n\n")
-        print("Pokemon info: \n-------------------------------")
-        print(f"Pokemon:            {cardinfo['Pokemon']}")
-        print(f"Pokedex Number:     {cardinfo['Pokedex Number']}")
-        print(f"Pokemon Card Type:  {cardinfo['Pokemon Type']}")
-        print(f"Pokemon Stage:      {cardinfo['Pokemon Stage']}")
-        print(f"Pokemon Height (m): {cardinfo['Pokemon Height']}")
+        getFoundCardData(cardinfo)  # Displays an image containing card info
         return True, getMatchingCard(cardinfo['Card Number'])
 
     # If no matching card was found, return False & black image
@@ -206,3 +196,67 @@ def makeDisplayImage(imgArr, labels):
                         (0, 0, 0), 2)
 
     return stacked
+
+
+# Uses information on the founding card to display a window with information on the card
+def getFoundCardData(cardinfo):
+    infoImg = np.full((320, getWidthCard() + 150, 3), 255, np.uint8)
+
+    # Card info
+    cv2.putText(infoImg, "Card info:",
+                (5, 40), cv2.FONT_HERSHEY_DUPLEX, 1.2, (0, 0, 0), 2)
+    cv2.putText(infoImg, "__________________________________________________",
+                (0, 50), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Card Name:",
+                (5, 80), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Card Name']}",
+                (225, 80), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Card Number:",
+                (5, 100), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Card Number']}",
+                (225, 100), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Card Rarity:",
+                (5, 120), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Rarity']}",
+                (225, 120), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Card Type:",
+                (5, 140), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Card Type']}",
+                (225, 140), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    # Pokemon info
+    cv2.putText(infoImg, "Pokemon info:",
+                (5, 180), cv2.FONT_HERSHEY_DUPLEX, 1.2, (0, 0, 0), 2)
+    cv2.putText(infoImg, "__________________________________________________",
+                (0, 190), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Pokemon:",
+                (5, 220), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Pokemon']}",
+                (225, 220), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Pokedex Number:",
+                (5, 240), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Pokedex Number']}",
+                (225, 240), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Pokemon Card Type:",
+                (5, 260), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Pokemon Type']}",
+                (225, 260), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Pokemon Stage:",
+                (5, 280), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Pokemon Stage']}",
+                (225, 280), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.putText(infoImg, "Pokemon Height (m):",
+                (5, 300), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+    cv2.putText(infoImg, f"{cardinfo['Pokemon Height']}",
+                (225, 300), cv2.FONT_HERSHEY_DUPLEX, 0.6, (0, 0, 0), 1)
+
+    cv2.imshow('Card Info', infoImg)

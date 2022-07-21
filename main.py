@@ -13,8 +13,6 @@ def readCard():
     widthCard = utils.getWidthCard()
     heightCard = utils.getHeightCard()
 
-    found = False
-
     while True:
         # Create a blank image
         blackImg = np.zeros((heightCard, widthCard, 3), np.uint8)
