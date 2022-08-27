@@ -1,5 +1,10 @@
 Pokémon Card Scanner
 =========================
+
+
+https://user-images.githubusercontent.com/57413019/187007394-c514c680-810f-4ce1-b1dc-e10459b5b45c.mp4
+
+
 This repository contains Python code for a Pokémon card scanner and identifier for any card in the [Evolutions Pokémon set](https://bulbapedia.bulbagarden.net/wiki/Evolutions_%28TCG%29).  
 
 The code first starts by defining whether the input is a live video or a saved image. If live video is chosen, the computer's second webcam is used which can be connected to a smart phone using the `Iriun Webcam` app.  
